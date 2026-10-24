@@ -1,65 +1,520 @@
-<!DOCTYPE html>
-<html lang="ug" dir="rtl">
+E html>
+<html lang="ug" dir="rtl" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مېنىڭ تۇنجى تور بېتىم</title>
+    <title>ئېسىل رەقەملىك كىتابخانا | Luxury Digital Library</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom Google Fonts & Tailwind Config -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            400: '#facc15',
+                            500: '#eab308',
+                            600: '#ca8a04',
+                            700: '#a16207',
+                        },
+                        darkbg: '#0B0F19',
+                        cardbg: 'rgba(23, 31, 51, 0.7)',
+                    },
+                    fontFamily: {
+                        uyghur: ['"UKIJ Tuz Tor"', '"ALKATIP Tor"', 'Tahoma', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
     <style>
         body {
-            font-family: "UKIJ Tuz Tor", "ALKATIP Tor", Tahoma, sans-serif;
-            background-color: #f4f6f9;
-            color: #333;
-            margin: 0;
-            padding: 20px;
-            direction: rtl;
+            font-family: 'UKIJ Tuz Tor', 'ALKATIP Tor', 'Tahoma', sans-serif;
+            background-color: #0B0F19;
+            color: #f3f4f6;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(234, 179, 8, 0.08) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(37, 99, 235, 0.08) 0px, transparent 50%);
+            background-attachment: fixed;
         }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: #ffffff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+
+        /* Glassmorphism styling */
+        .glass-panel {
+            background: rgba(23, 31, 51, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
-        h1 {
-            color: #2c3e50;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 10px;
+
+        .glass-card {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(234, 179, 8, 0.15);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        p {
-            line-height: 1.8;
-            font-size: 18px;
+
+        .glass-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(234, 179, 8, 0.5);
+            box-shadow: 0 12px 30px -10px rgba(234, 179, 8, 0.25);
         }
-        .btn {
-            display: inline-block;
-            background-color: #3498db;
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 15px;
-            transition: background 0.3s;
+
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #FFF5C0 0%, #EAB308 50%, #A16207 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        .btn:hover {
-            background-color: #2980b9;
+
+        .gold-button {
+            background: linear-gradient(135deg, #eab308 0%, #ca8a04 100%);
+            transition: all 0.3s ease;
+        }
+
+        .gold-button:hover {
+            background: linear-gradient(135deg, #facc15 0%, #eab308 100%);
+            box-shadow: 0 0 20px rgba(234, 179, 8, 0.4);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B0F19;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+            border: 1px solid rgba(234, 179, 8, 0.2);
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ca8a04;
         }
     </style>
 </head>
-<body>
+<body class="min-h-screen flex flex-col justify-between selection:bg-gold-500 selection:text-black">
 
-    <div class="container">
-        <h1>كەلگىنىڭىزنى ئۆزئارا قارشى ئالىمىز!</h1>
-        <p>بۇ HTML ۋە CSS ئارقىلىق ياسالغان ئاددىي بىر تور بەت كودى.</p>
-        
-        <h2>مېنىڭ قىزىقىشلىرىم:</h2>
-        <ul>
-            <li>پروگرامما تۈزۈش (HTML, CSS, JavaScript)</li>
-            <li>كىتاب ئوقۇش</li>
-            <li>تەبىئەت سېھرىدىن ھۇزۇرلىنىش</li>
-        </ul>
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-40 glass-panel border-b border-gray-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo & Brand Title -->
+            <div class="flex items-center space-x-4 space-x-reverse">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-gold-600 via-gold-400 to-amber-200 flex items-center justify-center shadow-lg shadow-gold-500/20">
+                    <i class="fa-solid fa-book-open text-gray-950 text-2xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-2xl font-bold gold-gradient-text tracking-wide">ئېسىل رەقەملىك كىتابخانا</h1>
+                    <p class="text-xs text-gray-400">ھۆججەتلىك كىتابلار ئامبىرى</p>
+                </div>
+            </div>
 
-        <a href="https://www.google.com" target="_blank" class="btn">گوگۇلدا ئىزدەش</a>
+            <!-- Action Button: Add New Book -->
+            <button onclick="openModal('addBookModal')" class="gold-button text-gray-950 font-semibold px-5 py-2.5 rounded-xl shadow-lg flex items-center gap-2 transform active:scale-95">
+                <i class="fa-solid fa-plus text-base"></i>
+                <span>يېڭى كىتاب قوشۇش</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full">
+
+        <!-- Hero & Stats Section -->
+        <section class="glass-panel rounded-3xl p-8 mb-10 border border-gold-500/20 relative overflow-hidden">
+            <div class="absolute -left-20 -top-20 w-64 h-64 bg-gold-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center relative z-10">
+                <div class="lg:col-span-2 space-y-4">
+                    <span class="inline-block px-3 py-1 bg-gold-500/10 text-gold-400 border border-gold-500/20 rounded-full text-sm font-medium">
+                        ✨ زامانىۋى رەقەملىك خەزىنە
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white leading-relaxed">
+                        بىلىم خەزىنىسىگە كەلگىنىڭىزنى كۈتۈۋالىمىز
+                    </h2>
+                    <p class="text-gray-300 leading-relaxed max-w-2xl text-base sm:text-lg">
+                        بۇ يەردىن ھەر خىل تۈردىكى ئەلا سۈپەتلىك PDF ھۆججەتلەر، ئىلمىي ۋە ئەدەبىي كىتابلارنى تاپالايسىز ياكى ئۆزىڭىزنىڭ يېڭى ھۆججەتلىك كىتابلىرىنى ئامبارغا قوشالايسىز.
+                    </p>
+                </div>
+
+                <!-- Stats Dashboard -->
+                <div class="grid grid-cols-3 gap-4 border-t lg:border-t-0 lg:border-r border-gray-700/60 pt-6 lg:pt-0 lg:pr-6">
+                    <div class="text-center p-3 rounded-2xl bg-gray-900/40 border border-gray-800">
+                        <div class="text-2xl font-bold gold-gradient-text" id="statTotal">0</div>
+                        <div class="text-xs text-gray-400 mt-1">جەمئىي كىتاب</div>
+                    </div>
+                    <div class="text-center p-3 rounded-2xl bg-gray-900/40 border border-gray-800">
+                        <div class="text-2xl font-bold gold-gradient-text" id="statCategories">0</div>
+                        <div class="text-xs text-gray-400 mt-1">تۈرلەر</div>
+                    </div>
+                    <div class="text-center p-3 rounded-2xl bg-gray-900/40 border border-gray-800">
+                        <div class="text-2xl font-bold text-emerald-400" id="statViews">2.4k</div>
+                        <div class="text-xs text-gray-400 mt-1">كۆرۈلگىنى</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Search and Filter Controls -->
+        <section class="mb-10 space-y-6">
+            <div class="flex flex-col md:flex-row gap-4 justify-between items-center">
+                
+                <!-- Search Input -->
+                <div class="relative w-full md:w-96">
+                    <i class="fa-solid fa-magnifying-glass absolute right-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                    <input type="text" id="searchInput" oninput="filterBooks()" placeholder="كىتاب نامى ياكى ئاپتور بويىچە ئىزدەڭ..." 
+                           class="w-full bg-slate-900/80 text-white pr-11 pl-4 py-3 rounded-xl border border-gray-700 focus:border-gold-500 focus:ring-1 focus:ring-gold-500 outline-none transition-all placeholder-gray-500">
+                </div>
+
+                <!-- Filter Badges -->
+                <div class="flex items-center gap-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0" id="categoryFilters">
+                    <button onclick="setCategory('all')" data-cat="all" class="cat-btn px-4 py-2 rounded-xl text-sm font-medium transition-all bg-gold-500 text-gray-950 font-bold shadow-md">
+                        بارلىقى
+                    </button>
+                    <button onclick="setCategory('ئەدەبىيات')" data-cat="ئەدەبىيات" class="cat-btn px-4 py-2 rounded-xl text-sm font-medium transition-all bg-slate-800/80 text-gray-300 hover:bg-slate-700 hover:text-white border border-gray-700/50">
+                        ئەدەبىيات
+                    </button>
+                    <button onclick="setCategory('پەن-تېخنىكا')" data-cat="پەن-تېخنىكا" class="cat-btn px-4 py-2 rounded-xl text-sm font-medium transition-all bg-slate-800/80 text-gray-300 hover:bg-slate-700 hover:text-white border border-gray-700/50">
+                        پەن-تېخنىكا
+                    </button>
+                    <button onclick="setCategory('ئۆز-ئۆزىنى يۈكسەلدۈرۈش')" data-cat="ئۆز-ئۆزىنى يۈكسەلدۈرۈش" class="cat-btn px-4 py-2 rounded-xl text-sm font-medium transition-all bg-slate-800/80 text-gray-300 hover:bg-slate-700 hover:text-white border border-gray-700/50">
+                        ئۆز-ئۆزىنى يۈكسەلدۈرۈش
+                    </button>
+                    <button onclick="setCategory('تارىخ')" data-cat="تارىخ" class="cat-btn px-4 py-2 rounded-xl text-sm font-medium transition-all bg-slate-800/80 text-gray-300 hover:bg-slate-700 hover:text-white border border-gray-700/50">
+                        تارىخ
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Book Display Grid -->
+        <section id="bookGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <!-- Dynamic Books Loaded Here -->
+        </section>
+
+        <!-- Empty State View -->
+        <div id="emptyState" class="hidden text-center py-16 glass-panel rounded-3xl border border-dashed border-gray-700 my-8">
+            <i class="fa-solid fa-book-bookmark text-6xl text-gray-600 mb-4"></i>
+            <h3 class="text-xl font-bold text-gray-300">ھېچقانداق كىتاب تاپىلالمىدى</h3>
+            <p class="text-gray-500 text-sm mt-2">ئىزدەش سۆزىنى ئۆزگەرتىپ كۆرۈڭ ياكى يېڭى كىتاب قوشۇڭ.</p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="glass-panel border-t border-gray-800/80 py-6 mt-16">
+        <div class="max-w-7xl mx-auto px-4 text-center text-gray-400 text-sm">
+            <p>© 2026 ئېسىل رەقەملىك كىتابخانا. بارلىق ھوقۇقلار ساقلانغان.</p>
+        </div>
+    </footer>
+
+    <!-- ADD BOOK MODAL -->
+    <div id="addBookModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="glass-panel bg-slate-900/95 border border-gold-500/30 rounded-3xl w-full max-w-xl overflow-hidden shadow-2xl transform transition-all">
+            <!-- Modal Header -->
+            <div class="px-6 py-4 border-b border-gray-800 flex justify-between items-center">
+                <h3 class="text-xl font-bold gold-gradient-text flex items-center gap-2">
+                    <i class="fa-solid fa-file-circle-plus"></i>
+                    يېڭى ھۆججەتلىك كىتاب قوشۇش
+                </h3>
+                <button onclick="closeModal('addBookModal')" class="text-gray-400 hover:text-white transition-colors">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+
+            <!-- Modal Form -->
+            <form id="bookForm" onsubmit="handleAddBook(event)" class="p-6 space-y-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-1">كىتاب نامى *</label>
+                        <input type="text" id="bookTitle" required placeholder="مەسىلەن: ئويغانغان زېمىن"
+                               class="w-full bg-slate-800/90 text-white px-4 py-2.5 rounded-xl border border-gray-700 focus:border-gold-500 outline-none text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-1">ئاپتورى *</label>
+                        <input type="text" id="bookAuthor" required placeholder="مەسىلەن: ئابدۇرېھىم ئۆتكۈر"
+                               class="w-full bg-slate-800/90 text-white px-4 py-2.5 rounded-xl border border-gray-700 focus:border-gold-500 outline-none text-sm">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-1">تۈرى *</label>
+                        <select id="bookCategory" required class="w-full bg-slate-800/90 text-white px-4 py-2.5 rounded-xl border border-gray-700 focus:border-gold-500 outline-none text-sm">
+                            <option value="ئەدەبىيات">ئەدەبىيات</option>
+                            <option value="پەن-تېخنىكا">پەن-تېخنىكا</option>
+                            <option value="ئۆز-ئۆزىنى يۈكسەلدۈرۈش">ئۆز-ئۆزىنى يۈكسەلدۈرۈش</option>
+                            <option value="تارىخ">تارىخ</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-1">مۇقاۋا رەسىمى (URL)</label>
+                        <input type="url" id="bookCover" placeholder="https://... (قۇرۇق قالسا ئۆزى تەڭشىلىدۇ)"
+                               class="w-full bg-slate-800/90 text-white px-4 py-2.5 rounded-xl border border-gray-700 focus:border-gold-500 outline-none text-sm">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-300 mb-1">ھۆججەت / PDF ئۇلىنىشى (URL) *</label>
+                    <input type="url" id="bookPdfUrl" required placeholder="https://example.com/document.pdf"
+                           class="w-full bg-slate-800/90 text-white px-4 py-2.5 rounded-xl border border-gray-700 focus:border-gold-500 outline-none text-sm">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-300 mb-1">قىسقىچە مەزمۇنى</label>
+                    <textarea id="bookSummary" rows="3" placeholder="كىتاب ھەققىدە قىسقىچە چۈشەنچە بېرىڭ..."
+                              class="w-full bg-slate-800/90 text-white px-4 py-2.5 rounded-xl border border-gray-700 focus:border-gold-500 outline-none text-sm"></textarea>
+                </div>
+
+                <!-- Submit Buttons -->
+                <div class="flex justify-end gap-3 pt-4 border-t border-gray-800">
+                    <button type="button" onclick="closeModal('addBookModal')" class="px-5 py-2.5 rounded-xl border border-gray-700 text-gray-300 text-sm hover:bg-gray-800 transition-colors">
+                        بىكار قىلىش
+                    </button>
+                    <button type="submit" class="gold-button text-gray-950 font-bold px-6 py-2.5 rounded-xl text-sm shadow-lg">
+                        ئامبارغا قوشۇش
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
 
-</body>
-</html>
+    <!-- BOOK READER MODAL -->
+    <div id="readerModal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden flex flex-col">
+        <!-- Reader Header -->
+        <div class="px-6 py-3 glass-panel border-b border-gray-800 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <i class="fa-solid fa-book-open text-gold-400 text-xl"></i>
+                <h3 id="readerTitle" class="text-lg font-bold text-white">كىتاب كۆرۈش</h3>
+            </div>
+            <div class="flex items-center gap-3">
+                <a id="readerDownloadBtn" href="#" target="_blank" class="px-4 py-1.5 rounded-lg bg-gold-500/20 text-gold-400 border border-gold-500/30 text-xs font-semibold hover:bg-gold-500/30 transition-colors flex items-center gap-1.5">
+                    <i class="fa-solid fa-download"></i>
+                    <span>چۈشۈرۈش</span>
+                </a>
+                <button onclick="closeModal('readerModal')" class="text-gray-400 hover:text-white transition-colors text-2xl px-2">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Embedded Document View -->
+        <div class="flex-grow w-full h-full bg-slate-950 p-2 sm:p-4">
+            <iframe id="readerIframe" class="w-full h-full rounded-2xl border border-gray-800" src="" frameborder="0"></iframe>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Sample Initial Books
+        const initialBooks = [
+            {
+                id: '1',
+                title: 'ئويغانغان زېمىن',
+                author: 'ئابدۇرېھىم ئۆتكۈر',
+                category: 'ئەدەبىيات',
+                cover: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=600&q=80',
+                pdfUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
+                summary: 'بۇ ئەسەر تارىخىي رېئاللىق بىلەن يۇقىرى ئەدەبىي ماھارەت بىرلەشتۈرۈلگەن داڭلىق رومان بولۇپ، خەلقىمىزنىڭ ئويغىنىش تارىخىنى ئەكس ئەتتۈرىدۇ.'
+            },
+            {
+                id: '2',
+                title: 'سۈنئىي ئېڭ ۋە كەلگۈسى',
+                author: 'مۇھەممەت ئۆمەر',
+                category: 'پەن-تېخنىكا',
+                cover: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80',
+                pdfUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
+                summary: 'سۈنئىي ئىقتىدار تېخنىكىسىنىڭ تەرەققىياتى، كەلگۈسىدىكى جەمئىيەت ۋە ئىنسانلار تۇرمۇشىغا كۆرسىتىدىغان تەسىرلىرى ھەققىدە ئىلمىي تەتقىقات.'
+            },
+            {
+                id: '3',
+                title: 'ئادىتنىڭ كۈچى',
+                author: 'چارلىز دۇھىگگ',
+                category: 'ئۆز-ئۆزىنى يۈكسەلدۈرۈش',
+                cover: 'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&w=600&q=80',
+                pdfUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
+                summary: 'كۈندىلىك ئادەتلەرنىڭ تۇرمۇشىمىز ۋە مۇۋەپپەقىيىتىمىزگە قانداق تەسىر كۆرسىتىدىغانلىقى ھەم ئۇنى قانداق ئۆزگەرتىش توغرىسىدا ئەڭ ياخشى قوللانما.'
+            },
+            {
+                id: '4',
+                title: 'يىپەك يولى تارىخى',
+                author: 'ئەخمەتجان سەئىدىي',
+                category: 'تارىخ',
+                cover: 'https://images.unsplash.com/photo-1461360370896-922624d12aa1?auto=format&fit=crop&w=600&q=80',
+                pdfUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
+                summary: 'قەدىمكى يىپەك يولى بويىدىكى مەدەنىيەت ئالماشتۇرۇش، سودا-سېتىق ۋە تارىخىي ئۆزگىرىشلەر تەپسىلىي بايان قىلىنغان ئىلمىي ئەسەر.'
+            }
+        ];
+
+        let books = [];
+        let currentCategory = 'all';
+
+        // Load Books from LocalStorage or initialize
+        function loadBooks() {
+            const stored = localStorage.getItem('luxury_library_books');
+            if (stored) {
+                books = JSON.parse(stored);
+            } else {
+                books = [...initialBooks];
+                saveBooks();
+            }
+            renderBooks();
+            updateStats();
+        }
+
+        // Save to LocalStorage
+        function saveBooks() {
+            localStorage.setItem('luxury_library_books', JSON.stringify(books));
+        }
+
+        // Update Statistics Counters
+        function updateStats() {
+            document.getElementById('statTotal').innerText = books.length;
+            const categories = new Set(books.map(b => b.category));
+            document.getElementById('statCategories').innerText = categories.size;
+        }
+
+        // Render Books Grid
+        function renderBooks() {
+            const grid = document.getElementById('bookGrid');
+            const emptyState = document.getElementById('emptyState');
+            const searchVal = document.getElementById('searchInput').value.toLowerCase().trim();
+
+            grid.innerHTML = '';
+
+            const filtered = books.filter(book => {
+                const matchesCat = (currentCategory === 'all' || book.category === currentCategory);
+                const matchesSearch = book.title.toLowerCase().includes(searchVal) || 
+                                      book.author.toLowerCase().includes(searchVal);
+                return matchesCat && matchesSearch;
+            });
+
+            if (filtered.length === 0) {
+                emptyState.classList.remove('hidden');
+            } else {
+                emptyState.classList.add('hidden');
+                filtered.forEach(book => {
+                    grid.appendChild(createBookCard(book));
+                });
+            }
+        }
+
+        // Create Individual Book Card Element
+        function createBookCard(book) {
+            const card = document.createElement('div');
+            card.className = 'glass-card rounded-2xl overflow-hidden flex flex-col justify-between group relative';
+            
+            const defaultCover = 'https://images.unsplash.com/photo-1543002588-bfa74002ed7e?auto=format&fit=crop&w=600&q=80';
+            const coverImg = book.cover && book.cover.trim() !== '' ? book.cover : defaultCover;
+
+            card.innerHTML = `
+                <div>
+                    <!-- Book Cover Container -->
+                    <div class="relative h-52 overflow-hidden bg-slate-900">
+                        <img src="${coverImg}" alt="${book.title}" 
+                             onerror="this.src='${defaultCover}'"
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
+                        <span class="absolute top-3 right-3 px-3 py-1 bg-slate-900/80 backdrop-blur-md text-gold-400 text-xs font-semibold rounded-full border border-gold-500/30">
+                            ${book.category}
+                        </span>
+                    </div>
+
+                    <!-- Book Information -->
+                    <div class="p-5">
+                        <h3 class="text-lg font-bold text-white group-hover:text-gold-400 transition-colors line-clamp-1">${book.title}</h3>
+                        <p class="text-xs text-amber-200/70 mt-1 flex items-center gap-1">
+                            <i class="fa-solid fa-pen-nib text-gold-500 text-xs"></i>
+                            <span>${book.author}</span>
+                        </p>
+                        <p class="text-xs text-gray-400 mt-3 line-clamp-2 leading-relaxed">
+                            ${book.summary || 'ھېچقانداق قىسقىچە مەزمۇن يېزىلمىغان.'}
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="p-5 pt-0 flex items-center gap-2">
+                    <button onclick="openReader('${book.id}')" class="flex-grow gold-button text-gray-950 font-bold py-2 px-3 rounded-xl text-xs flex items-center justify-center gap-1.5 shadow-md">
+                        <i class="fa-solid fa-eye"></i>
+                        <span>كۆرۈش / ئوقۇش</span>
+                    </button>
+                    <button onclick="deleteBook('${book.id}')" class="p-2 rounded-xl bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/20 transition-colors" title="ئۆچۈرۈش">
+                        <i class="fa-solid fa-trash-can text-xs"></i>
+                    </button>
+                </div>
+            `;
+            return card;
+        }
+
+        // Add New Book Handler
+        function handleAddBook(e) {
+            e.preventDefault();
+
+            const title = document.getElementById('bookTitle').value.trim();
+            const author = document.getElementById('bookAuthor').value.trim();
+            const category = document.getElementById('bookCategory').value;
+            const cover = document.getElementById('bookCover').value.trim();
+            const pdfUrl = document.getElementById('bookPdfUrl').value.trim();
+            const summary = document.getElementById('bookSummary').value.trim();
+
+            const newBook = {
+                id: Date.now().toString(),
+                title,
+                author,
+                category,
+                cover,
+                pdfUrl,
+                summary
+            };
+
+            books.unshift(newBook);
+            saveBooks();
+            renderBooks();
+            updateStats();
+
+            document.getElementById('bookForm').reset();
+            closeModal('addBookModal');
+        }
+
+        // Delete Book
+        function deleteBook(id) {
+            if (confirm('بۇ كىتابنى راستلا ئامباردىن ئۆچۈرمەكچىمۇ؟')) {
+                books = books.filter(b => b.id !== id);
+                saveBooks();
+                renderBooks();
+                updateStats();
+            }
+        }
+
+        // Category Filter Switching
+        function setCategory(cat) {
+            currentCategory = cat;
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                if (btn.dataset.cat === cat) {
+                    btn.className = "cat-btn px-4 py-2 rounded-xl text-sm font-medium transition-all bg-gold-500 text-gray-950 font-bold shadow-md";
+                } else {
+                    btn.className = "cat-btn px-4 py-2 rounded-xl text-sm font-medium transition-all bg-slate-800/80 text-gray-300 hover:bg-slate-700 hover:text-white border border-gray-700/50";
+                }
+            });
+            renderBooks();
+        }
+
+        // Search Filter
+        function filterBooks() {
+            renderBooks();
+        }
+
+        // Reader Modal Controls
+        function openReader(id) {
+            const book = books.find(b => b.id === id);
+            if (!book) return;
+
+            document.getElementById('readerTitle').innerText = book.title + ' - ' + book.author;
+            document.getElementById('readerIframe').src = book.pdfUrl;
+            document.getElementById('readerDownloadBtn').href = book.pdfUrl;
+
+            openModal('readerModal');
+        }
